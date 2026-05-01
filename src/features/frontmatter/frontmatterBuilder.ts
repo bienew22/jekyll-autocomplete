@@ -70,17 +70,17 @@ class FrontmatterBuilder {
 	}
 
 	title(value: string) {
-		this.lines.push(`title: ${value}`);
+		this.lines.push(`title: "${value}"`);
 		return this;
 	}
 
 	slug(value: string) {
-		this.lines.push(`slug: ${value}`);
+		this.lines.push(`slug: "${value}"`);
 		return this;
 	}
 
 	description(value: string) {
-		this.lines.push(`description: ${value}`);
+		this.lines.push(`description: "${value}"`);
 		return this;
 	}
 
