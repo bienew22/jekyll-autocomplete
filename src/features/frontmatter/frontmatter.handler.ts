@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as yaml from 'js-yaml';
-import { frontmatterBuilder } from './frontmatterBuilder';
+import { frontmatterBuilder } from './frontmatter.builder';
 
 export async function onCreateFileHandler(event: vscode.FileCreateEvent) {
     for (const file of event.files) {

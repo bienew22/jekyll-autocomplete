@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { onCreateFileHandler, onRenameeFileHandler } from './frontmatterHandler';
+import { onCreateFileHandler, onRenameeFileHandler } from './frontmatter.handler';
 
 
 

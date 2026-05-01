@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { registerFrontmatter } from './features/frontmatter/registerFrontmatter';
+import { registerFrontmatter } from './features/frontmatter/frontmatter.register';
 
 export function activate(context: vscode.ExtensionContext) {
 
