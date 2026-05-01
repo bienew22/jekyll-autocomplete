@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import { onCreateFileHandler, onRenameeFileHandler } from './frontmatter.handler';
 
-
-
 export function frontmatterRegister(context: vscode.ExtensionContext) {
     // 파일 생성시 frontmatter 자동 주입.
     const onCreate = vscode.workspace.onDidCreateFiles(async (event) => {

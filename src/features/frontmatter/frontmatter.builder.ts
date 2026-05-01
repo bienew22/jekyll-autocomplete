@@ -1,7 +1,6 @@
 import { FrontmatterDSL } from "./frontmatter.dsl";
 import { formatDateTime, extractTitle } from "./frontmatter.utils";
 
-
 type FrontmatterOptions = {
 	fileName: string,
 	yamlData?: any
@@ -33,7 +32,6 @@ export function frontmatterBuilder({ fileName, yamlData }: FrontmatterOptions): 
 		.image_path(yamlData?.image?.path)
 		.build();
 }
-
 
 /**
  * yaml에 Date가 없으면 현재 시간을 반환.

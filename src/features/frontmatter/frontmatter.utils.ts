@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 
-
 /**
  * 파일 유효성 검사
  * @param file 파일 uri
