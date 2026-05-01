@@ -2,6 +2,7 @@
   "name": "jekll-autocomplete",
   "displayName": "jekll-autocomplete",
   "description": "A VSCode extension that improves Jekyll blogging productivity by providing smart autocomplete, front matter snippets, and markdown writing helpers.",
+  "publisher": "bienew22",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.118.0"
