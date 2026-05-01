@@ -7,3 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 
 - Initial release
+
+
+## [0.1.0] - 2026-05-01
+
+### Added
+
+- `_post` 폴더에 `yyyy-mm-dd-title.md` 형식의 파일 생성 시 자동으로 frontmatter 삽입 기능 추가.
+- 파일 이름 수정 시 제목 및 생성일자, 수정 일자 자동 업데이트 기능 추가.

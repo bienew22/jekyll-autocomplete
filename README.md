@@ -42,4 +42,6 @@ src/
  ├── constants/
  │   ├── jekyll.ts
 
- 임시 구조
+임시 구조
+
+배포 명령어 : vsce package
