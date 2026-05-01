@@ -21,16 +21,21 @@ export class FrontmatterDSL {
 		return this;
 	}
 
-	date(date: string, time: string) {
-		this.lines.push(`date: ${date} ${time} +09:00`);
+	author(value: string) {
+		this.lines.push(`author: ${value}`);
 		return this;
 	}
 
-	last_modified_at(date: string, time: string, able: boolean) {
+	date(value: string) {
+		this.lines.push(`date: ${value} +09:00`);
+		return this;
+	}
+
+	last_modified_at(value: string, able: boolean) {
 		if (able) {
-			this.lines.push(`last_modified_at: ${date} ${time} +09:00`);
+			this.lines.push(`last_modified_at: ${value} +09:00`);
 		} else {
-			this.lines.push(`#last_modified_at: ${date} ${time} +09:00`);
+			this.lines.push(`#last_modified_at: ${value} +09:00`);
 		}
 		return this;
 	}
@@ -56,11 +61,6 @@ export class FrontmatterDSL {
 		return this;
 	}
 
-	author(value: string) {
-		this.lines.push(`author: ${value}`);
-		return this;
-	}
-
 	image_path(value: string) {
 		if (!!value) {
 			this.lines.push('image:');
@@ -69,6 +69,8 @@ export class FrontmatterDSL {
 			this.lines.push('#image:');
 			this.lines.push('#   path:');
 		}
+
+		return this;
 	}
 
 	build() {

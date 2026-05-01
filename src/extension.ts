@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
-import { registerFrontmatter } from './features/frontmatter/frontmatter.register';
+import { frontmatterRegister } from './features/frontmatter/frontmatter.register';
 
 export function activate(context: vscode.ExtensionContext) {
 
 	// frontmatter - 이벤트 등록
-	registerFrontmatter(context);
+	frontmatterRegister(context);
 }
 
 export function deactivate() {}
