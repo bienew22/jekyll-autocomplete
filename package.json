@@ -3,6 +3,14 @@
   "displayName": "jekll-autocomplete",
   "description": "A VSCode extension that improves Jekyll blogging productivity by providing smart autocomplete, front matter snippets, and markdown writing helpers.",
   "publisher": "bienew22",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bienew22/jekyll-autocomplete"
+  },
+  "homepage": "https://github.com/bienew22/jekyll-autocomplete",
+  "bugs": {
+    "url": "https://github.com/bienew22/jekyll-autocomplete/issues"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.118.0"
@@ -37,6 +45,8 @@
     "test": "vscode-test"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.19.17",
     "@types/vscode": "^1.118.0",

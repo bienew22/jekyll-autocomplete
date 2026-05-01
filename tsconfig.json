@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"module": "Node16",
+		"esModuleInterop": true,
 		"target": "ES2022",
 		"lib": [
 			"ES2022", "dom"
@@ -8,6 +9,7 @@
 		"sourceMap": true,
 		"rootDir": "src",
 		"strict": true,
+		"types": ["node"]
 		// "types": ["node", "vscode"]
 		// "types": ["node"]   /* enable all strict type-checking options */
 		/* Additional Checks */
