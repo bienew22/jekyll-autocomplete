@@ -8,6 +8,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release
 
+## [0.2.0] - 2026-05-05
+
+### Added
+
+- '/' 입력 시, markdown 문법 자동완성 기능 추가.
+- Heading, List, Prompt, Code block, Image, Foot note, Link, Table 추가
 
 ## [0.1.0] - 2026-05-01
 
