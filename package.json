@@ -23,12 +23,25 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "jekll-autocomplete.helloWorld",
-        "title": "Hello World"
+    "configuration": {
+      "title": "Auto Complete Commands",
+      "properties": {
+        "auto.complete.commands": {
+          "type": "array",
+          "default": [],
+          "description": "사용자 정의 자동완성 명령어",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sort": {"type": "string"},
+              "label": {"type": "string"},
+              "desc": {"type": "string"},
+              "insert": {"type": "string"}
+            }
+          }
+        }
       }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

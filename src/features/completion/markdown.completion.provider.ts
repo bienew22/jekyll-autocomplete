@@ -39,8 +39,6 @@ const COMMANDS: MarkdownCommand[] = [
   { sort: "070", label: "table-order-center", desc: "가운데 정렬 표", insert: "| ${1:제목} |\n| :---: |\n | ${2:내용} |" },
   { sort: "071", label: "table-order-left", desc: "왼쪽 정렬 표", insert: "| ${1:제목} |\n| :--- |\n | ${2:내용} |" },
   { sort: "072", label: "table-order-right", desc: "오른쪽 정렬 표", insert: "| ${1:제목} |\n| ---: |\n | ${2:내용} |" },
-
-  { sort: "100", label: "hello", desc: "test", insert: "![${1:alt}](${2:url})" },
 ];
 
 export class MarkdownCompletionProvider implements vscode.CompletionItemProvider {
@@ -50,7 +48,7 @@ export class MarkdownCompletionProvider implements vscode.CompletionItemProvider
         
         const start = position.translate(0, -1);
 
-        return COMMANDS
+        return getCommands()
             .map(cmd => this.createItem(cmd, start, position));
     }
 
@@ -76,4 +74,10 @@ export class MarkdownCompletionProvider implements vscode.CompletionItemProvider
         return item;
     }
 
+}
+
+function getCommands(): MarkdownCommand[] {
+    const userCommands = vscode.workspace.getConfiguration("auto.complete");
+    console.log(userCommands);
+    return [...COMMANDS, ...userCommands.get<MarkdownCommand[]>("commands", [])];
 }
