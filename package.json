@@ -23,22 +23,50 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "jekll.autocomplete.openSettings",
+        "title": "Jekll Autocomplete: Open Settings"
+      }
+      
+    ],
     "configuration": {
-      "title": "Auto Complete Commands",
+      "title": "Jekll Autocomplete Commands",
       "properties": {
-        "auto.complete.commands": {
-          "type": "array",
-          "default": [],
+        "jekll.autocomplete.commands": {
+          "type": "object",
+          "default": {
+            "custom-h1": {
+              "sort": "001",
+              "desc": "제목1",
+              "insert": "# "
+            },
+            "custom-code": {
+              "sort": "010",
+              "desc": "코드 블럭",
+              "insert": "```$1\n$2\n```"
+            }
+          },
           "description": "사용자 정의 자동완성 명령어",
-          "items": {
+          "additionalProperties": {
             "type": "object",
             "properties": {
-              "sort": {"type": "string"},
-              "label": {"type": "string"},
-              "desc": {"type": "string"},
-              "insert": {"type": "string"}
-            }
+              "sort": {
+                "type": "string",
+                "description": "정렬 순서 (문자열 숫자, 예: 001)" 
+              },
+              "desc": {
+                "type": "string",
+                "description": "명령어 설명 텍스트"
+              },
+              "insert": {
+                "type": "string",
+                "description": "삽입될 스니펫"
+              }
+            },
+            "required": ["insert"]
           }
+          
         }
       }
     }

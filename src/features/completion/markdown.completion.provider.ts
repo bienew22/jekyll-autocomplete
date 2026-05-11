@@ -77,7 +77,17 @@ export class MarkdownCompletionProvider implements vscode.CompletionItemProvider
 }
 
 function getCommands(): MarkdownCommand[] {
-    const userCommands = vscode.workspace.getConfiguration("auto.complete");
-    console.log(userCommands);
-    return [...COMMANDS, ...userCommands.get<MarkdownCommand[]>("commands", [])];
+    const userCommands = vscode.workspace.getConfiguration("jekll.autocomplete");
+    const obj = userCommands.get<Record<string, any>>("commands", {});
+
+    const commands = Object.entries(obj).map(([label, cmd]) => ({
+        label,
+        sort: cmd.sort ?? "999",
+        desc: cmd.desc ?? "",
+        insert: cmd.insert
+    }));
+
+    console.log(obj);
+
+    return [...COMMANDS, ...commands];
 }
