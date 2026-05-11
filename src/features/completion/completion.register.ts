@@ -1,17 +1,16 @@
 import * as vscode from 'vscode';
-import { MarkdownCompletionProvider } from './markdown.completion.provider';
+import { CompletionProvider } from './completion.provider';
 
 
 export function completionRegister(context: vscode.ExtensionContext) {
-    // markdown auto completion
+    // auto completion
     const markdownCompletion = vscode.languages.registerCompletionItemProvider(
         { language: 'markdown' },
-        new MarkdownCompletionProvider(),
+        new CompletionProvider(),
         '/' // triger character
     );
 
     console.log("EXTENSION ACTIVATED");
     
-
     context.subscriptions.push(markdownCompletion);
 }

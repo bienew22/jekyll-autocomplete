@@ -1,14 +1,11 @@
-import * as vscode from 'vscode';
-
-
-type MarkdownCommand = {
+export type AutoCompleteCommands = {
     sort: string,
     label: string,
     desc: string,
     insert: string
 }
 
-const COMMANDS: MarkdownCommand[] = [
+export const PREDEFINED_COMMANDS: AutoCompleteCommands[] = [
   { sort: "000", label: "h1", desc: "제목1", insert: "# " },
   { sort: "001", label: "h2", desc: "제목2", insert: "## " },
   { sort: "002", label: "h3", desc: "제목3", insert: "### " },
@@ -40,54 +37,3 @@ const COMMANDS: MarkdownCommand[] = [
   { sort: "071", label: "table-order-left", desc: "왼쪽 정렬 표", insert: "| ${1:제목} |\n| :--- |\n | ${2:내용} |" },
   { sort: "072", label: "table-order-right", desc: "오른쪽 정렬 표", insert: "| ${1:제목} |\n| ---: |\n | ${2:내용} |" },
 ];
-
-export class MarkdownCompletionProvider implements vscode.CompletionItemProvider {
-    provideCompletionItems(
-        document: vscode.TextDocument, position: vscode.Position, 
-        token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
-        
-        const start = position.translate(0, -1);
-
-        return getCommands()
-            .map(cmd => this.createItem(cmd, start, position));
-    }
-
-    private createItem(cmd: MarkdownCommand, start: vscode.Position, end: vscode.Position): vscode.CompletionItem {
-        const item = new vscode.CompletionItem(
-            cmd.label,
-            vscode.CompletionItemKind.Snippet
-        );
-
-        // 명령어 검색 설정 - 라벨과 설명 허용
-        item.filterText = `/${cmd.label} /${cmd.desc}`;
-        
-        // 명령어 정렬 기준 설정
-        item.sortText = cmd.sort;
-
-        // 명령어 설명 설정
-        item.detail = cmd.desc;
-
-        // 명령어 선택 시 교체되는 문구 설정
-        item.range = new vscode.Range(start, end);
-        item.insertText = new vscode.SnippetString(cmd.insert);
-
-        return item;
-    }
-
-}
-
-function getCommands(): MarkdownCommand[] {
-    const userCommands = vscode.workspace.getConfiguration("jekll.autocomplete");
-    const obj = userCommands.get<Record<string, any>>("commands", {});
-
-    const commands = Object.entries(obj).map(([label, cmd]) => ({
-        label,
-        sort: cmd.sort ?? "999",
-        desc: cmd.desc ?? "",
-        insert: cmd.insert
-    }));
-
-    console.log(obj);
-
-    return [...COMMANDS, ...commands];
-}
