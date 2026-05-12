@@ -4,9 +4,12 @@ All notable changes to the "jekll-autocomplete" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
 
-- Initial release
+## [0.3.0] - 2026-05-12
+
+### Added
+
+- 사용자 설정을 통하여 자동완성 키워드 추가 기능 추가
 
 ## [0.2.0] - 2026-05-05
 
