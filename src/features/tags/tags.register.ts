@@ -10,9 +10,9 @@ export async function tagsRegister(context: vscode.ExtensionContext) {
     // 파일 생성 수정 삭제 시 업데이트 (yyyy-mm-dd-title.md)
     const watcher = vscode.workspace.createFileSystemWatcher("**/_posts/**/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md");
 
-    watcher.onDidCreate(uri => updateFileTags(uri));
-    watcher.onDidChange(uri => updateFileTags(uri));
-    watcher.onDidDelete(uri => removeFileTags(uri));
+    watcher.onDidCreate(uri => updateFileTags(context, uri));
+    watcher.onDidChange(uri => updateFileTags(context, uri));
+    watcher.onDidDelete(uri => removeFileTags(context, uri));
 
     context.subscriptions.push(watcher);
     

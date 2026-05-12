@@ -21,33 +21,48 @@ export async function buildTagCache(context: vscode.ExtensionContext) {
     // 최초 1회 전체 스캔하여 tag 정보 획득.
     const files = await vscode.workspace.findFiles("_posts/**/*.md");
     
-    files.forEach(file => updateFileTags(file));
+    files.forEach(file => {
+
+        if (!fileValidataion(file.fsPath)) {
+            return;
+        }
+        const tags = extractTagFromFile(file.fsPath);
+
+        tagCache.updateFile(file.fsPath, tags);
+    });
     
     // tag 정보 저장
-    await context.workspaceState.update(
-        "tagCache",
-        tagCache.serialize()
-    );
+    await updateCache(context);
 }
 
 
-export function updateFileTags(file: vscode.Uri) {
+export async function updateFileTags(context: vscode.ExtensionContext, file: vscode.Uri) {
     if (!fileValidataion(file.fsPath)) {
         return;
     }
     const tags = extractTagFromFile(file.fsPath);
 
-    console.log(`${file.fsPath}: ${tags}`);
-
     tagCache.updateFile(file.fsPath, tags);
+
+    await updateCache(context);
 }
 
 
-export function removeFileTags(file: vscode.Uri) {
+export async function removeFileTags(context: vscode.ExtensionContext, file: vscode.Uri) {
     if (!fileValidataion(file.fsPath)) {
         return;
     }
     tagCache.removeFile(file.fsPath);
+
+    await updateCache(context);
+}
+
+
+async function updateCache(context: vscode.ExtensionContext) {
+    await context.workspaceState.update(
+        "tagCache",
+        tagCache.serialize()
+    );
 }
 
 
