@@ -66,7 +66,7 @@ tags: []
 ```json
 "key": {                
     "sort": "string",   
-    "desc": "string,    
+    "desc": "string",    
     "insert": "string"  
 }
 ```
