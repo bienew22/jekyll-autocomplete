@@ -1,5 +1,5 @@
-export class TagCache {
-    private tagMap = new Map<string, number>();
+class TagCache {
+    private tagCnt = new Map<string, number>();
 
     add(tag: string) {
         const t = tag.trim().toLocaleLowerCase();
@@ -8,18 +8,30 @@ export class TagCache {
             return;
         }
 
-        this.tagMap.set(t, (this.tagMap.get(t) || 0) + 1);
+        this.tagCnt.set(t, (this.tagCnt.get(t) || 0) + 1);
     }
 
     getAll(): string[][] {
-        return [...this.tagMap.entries()]
-        .map(([tag]) => [tag, String(this.tagMap.get(tag))]);
+        return [...this.tagCnt.entries()]
+        .map(([tag]) => [tag, String(this.tagCnt.get(tag))]);
     }
 
     search(keyword: string): string[] {
-        return [...this.tagMap.entries()]
+        return [...this.tagCnt.entries()]
             .filter(([tag]) => tag.includes(keyword))
             .sort((a, b) => b[1] - a[1])
             .map(([tag]) => tag);
     }
+
+    serialize() {
+        return {
+            tagCnt: [...this.tagCnt.entries()]
+        };
+    }
+
+    deserialize(data: any) {
+        this.tagCnt = new Map(data.tagCnt);
+    }
 }
+
+export const tagCache = new TagCache();

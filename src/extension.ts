@@ -8,7 +8,7 @@ import { tagsRegister } from './features/tags/tags.register';
 
 export async function activate(context: vscode.ExtensionContext) {
 
-	await buildTagCache();
+	await buildTagCache(context);
 
 	// frontmatter - 이벤트 등록
 	frontmatterRegister(context);

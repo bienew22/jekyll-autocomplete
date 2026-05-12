@@ -1,9 +1,7 @@
 import * as vscode from 'vscode';
 import { isCursorInTags } from './tags.utils';
-import { TagCache } from './tags.cache';
+import { tagCache } from './tags.cache';
 
-
-export const tagCache = new TagCache();
 
 export class TagsProvider implements vscode.CompletionItemProvider {
     provideCompletionItems(
