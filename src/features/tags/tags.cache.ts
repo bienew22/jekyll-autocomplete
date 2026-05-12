@@ -21,6 +21,12 @@ class TagCache {
     }
 
     removeFile(file: string) {
+        const oldTags = this.fileTags.get(file) || [];
+
+        for (const tag of oldTags) {
+            this.decTagCount(tag);
+        }
+        
         this.fileTags.delete(file);
     }
 
