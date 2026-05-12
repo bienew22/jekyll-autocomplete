@@ -1,14 +1,43 @@
 class TagCache {
+    private fileTags = new Map<string, string[]>();
     private tagCnt = new Map<string, number>();
 
-    add(tag: string) {
-        const t = tag.trim().toLocaleLowerCase();
 
-        if (!t) {
-            return;
+    updateFile(file: string, newTags: string[]) {
+        // 기존 파일의 태그 정보.
+        const oldTags = this.fileTags.get(file) || [];
+
+        // 기존 파일의 태그 제거.
+        for (const tag of oldTags) {
+            this.decTagCount(tag);
         }
 
-        this.tagCnt.set(t, (this.tagCnt.get(t) || 0) + 1);
+        // 새로운 파일의 태그 추가.
+        for (const tag of newTags) {
+            this.incTagCount(tag);
+        }
+
+        this.fileTags.set(file, newTags);
+    }
+
+    removeFile(file: string) {
+        this.fileTags.delete(file);
+    }
+
+    decTagCount(tag: string) {
+        if (!this.tagCnt.has(tag)) {
+            return;
+        }
+        
+        this.tagCnt.set(tag, this.tagCnt.get(tag)!! - 1);
+
+        if (this.tagCnt.get(tag)!! <= 0) {
+            this.tagCnt.delete(tag);
+        }
+    }
+
+    incTagCount(tag: string) {
+        this.tagCnt.set(tag, (this.tagCnt.get(tag) || 0) + 1);
     }
 
     getAll(): string[][] {
@@ -16,20 +45,15 @@ class TagCache {
         .map(([tag]) => [tag, String(this.tagCnt.get(tag))]);
     }
 
-    search(keyword: string): string[] {
-        return [...this.tagCnt.entries()]
-            .filter(([tag]) => tag.includes(keyword))
-            .sort((a, b) => b[1] - a[1])
-            .map(([tag]) => tag);
-    }
-
     serialize() {
         return {
+            fileTags: [...this.fileTags.entries()],
             tagCnt: [...this.tagCnt.entries()]
         };
     }
 
     deserialize(data: any) {
+        this.fileTags = new Map(data.fileTags);
         this.tagCnt = new Map(data.tagCnt);
     }
 }

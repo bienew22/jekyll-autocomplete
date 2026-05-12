@@ -2,10 +2,11 @@ import * as fs from "fs";
 import * as vscode from "vscode";
 import matter from "gray-matter";
 import { tagCache } from "./tags.cache";
+import { fileValidataion } from "../utils/file";
 
 
 export async function buildTagCache(context: vscode.ExtensionContext) {
-
+    
     // 캐시로부터 tag 정보 가져오기.
     const saved = context.workspaceState.get("tagCache");
 
@@ -19,20 +20,34 @@ export async function buildTagCache(context: vscode.ExtensionContext) {
 
     // 최초 1회 전체 스캔하여 tag 정보 획득.
     const files = await vscode.workspace.findFiles("_posts/**/*.md");
-
-    for (const file of files) {
-        const tags = extractTagFromFile(file.fsPath);
-
-        for (const tag of tags) {
-            tagCache.add(tag);
-        }
-    }
-
+    
+    files.forEach(file => updateFileTags(file));
+    
     // tag 정보 저장
     await context.workspaceState.update(
         "tagCache",
         tagCache.serialize()
     );
+}
+
+
+export function updateFileTags(file: vscode.Uri) {
+    if (!fileValidataion(file.fsPath)) {
+        return;
+    }
+    const tags = extractTagFromFile(file.fsPath);
+
+    console.log(`${file.fsPath}: ${tags}`);
+
+    tagCache.updateFile(file.fsPath, tags);
+}
+
+
+export function removeFileTags(file: vscode.Uri) {
+    if (!fileValidataion(file.fsPath)) {
+        return;
+    }
+    tagCache.removeFile(file.fsPath);
 }
 
 

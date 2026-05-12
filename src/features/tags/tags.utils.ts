@@ -7,7 +7,7 @@ import * as vscode from 'vscode';
  * @returns boolean
  */
 export function isCursorInTags(document: vscode.TextDocument, position: vscode.Position) {
-
+    
     const range = getFrontMatterRange(document);
 
     if (!range || !range.contains(position)) {

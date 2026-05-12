@@ -6,7 +6,7 @@ import { extractFileName, fileValidataion } from '../utils/file';
 export async function onCreateFileHandler(event: vscode.FileCreateEvent) {
     for (const file of event.files) {
         // 파일 유효성 검사
-        if (!fileValidataion(file)) {
+        if (!fileValidataion(file.fsPath)) {
             continue;
         }
 
@@ -25,7 +25,7 @@ export async function onCreateFileHandler(event: vscode.FileCreateEvent) {
 export async function onRenameeFileHandler(event: vscode.FileRenameEvent) {
     for (const file of event.files) {
         // 파일 유효성 검사
-        if (!fileValidataion(file.newUri)) {
+        if (!fileValidataion(file.newUri.fsPath)) {
             continue;
         }
 
