@@ -1,5 +1,6 @@
+import { extractTitle } from "../utils/file";
 import { FrontmatterDSL } from "./frontmatter.dsl";
-import { formatDateTime, extractTitle } from "./frontmatter.utils";
+import { formatDateTime } from "./frontmatter.utils";
 
 type FrontmatterOptions = {
 	fileName: string,
@@ -9,7 +10,7 @@ type FrontmatterOptions = {
 export function frontmatterBuilder({ fileName, yamlData }: FrontmatterOptions): string {
 	// 1. 제목 설정.
 	const title = extractTitle(fileName);
-
+	
 	// 2. slug 생성.
 	// TODO: gemini api 사용하여 구현 예정.
 

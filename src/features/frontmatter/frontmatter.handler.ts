@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as yaml from 'js-yaml';
 import { frontmatterBuilder } from './frontmatter.builder';
-import { extractFileName, fileValidataion } from './frontmatter.utils';
+import { extractFileName, fileValidataion } from '../utils/file';
 
 export async function onCreateFileHandler(event: vscode.FileCreateEvent) {
     for (const file of event.files) {
