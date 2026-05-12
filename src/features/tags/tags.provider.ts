@@ -22,7 +22,7 @@ export class TagsProvider implements vscode.CompletionItemProvider {
 
             item.filterText = `t${tag[0]}`;
             item.insertText = `${tag[0]}, `;
-            item.sortText = tag[1];
+            item.sortText = String(99999 - (Number(tag[1]) || 0)).padStart(5, '0') + tag[0];
             item.detail = tag[1];
 
             return item;
