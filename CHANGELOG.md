@@ -5,6 +5,18 @@ All notable changes to the "jekll-autocomplete" extension will be documented in 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+## [1.0.0] - 2026-05-12
+
+### Added
+
+- frontmatter의 tags에서 `t`를 입력시 기존 태그 자동 완성 기능 추가
+- 수동적으로 태그 정보 업데이트 기능 추가
+- 파일 저장, 수정, 삭제 시 태그 정보 자동 반영 기능 추가
+
+### Changed
+
+- `_posts` 폴더 하위에 `yyyy-mm-dd-title.md` 파일 아닌 곳에서 동작하지 않도록 수정
+
 ## [0.3.0] - 2026-05-12
 
 ### Added
