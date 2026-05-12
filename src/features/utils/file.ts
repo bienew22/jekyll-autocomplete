@@ -2,25 +2,24 @@ import * as vscode from 'vscode';
 
 /**
  * 파일 유효성 검사
- * @param file 파일 uri
+ * @param fsPath 파일의 fsPath
  * @returns boolean, 문제없으면 true
  */
-export function fileValidataion(file: vscode.Uri): boolean {
+export function fileValidataion(fsPath: string): boolean {
     // 1. md 파일만 처리
-    if (!file.fsPath.endsWith('.md')) {
+    if (!fsPath.endsWith('.md')) {
         return false;
     }
 
     // 2. _posts 폴더 제한 
-    if (!file.fsPath.includes('_posts')) {
+    if (!fsPath.includes('_posts')) {
         return false;
     }
 
     // 3. 파일명 양식 yyyy-mm-dd-title.md 검사
-    const fileName = extractFileName(file.fsPath);
+    const fileName = extractFileName(fsPath);
     
     return isValidFileName(fileName);
-
 }
 
 /**
