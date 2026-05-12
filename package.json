@@ -27,6 +27,10 @@
       {
         "command": "jekll.autocomplete.openSettings",
         "title": "Jekll Autocomplete: Open Settings"
+      },
+      {
+        "command": "jekyll.autocomplete.rebuildCache",
+        "title": "Jekll Autocomplete: Rebuild Tag Cache"
       }
     ],
     "configuration": {

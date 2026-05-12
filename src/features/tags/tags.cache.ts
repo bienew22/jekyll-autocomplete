@@ -45,6 +45,11 @@ class TagCache {
         .map(([tag]) => [tag, String(this.tagCnt.get(tag))]);
     }
 
+    clear() {
+        this.fileTags.clear();
+        this.tagCnt.clear();
+    }
+
     serialize() {
         return {
             fileTags: [...this.fileTags.entries()],
