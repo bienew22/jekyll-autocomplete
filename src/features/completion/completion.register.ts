@@ -9,8 +9,6 @@ export function completionRegister(context: vscode.ExtensionContext) {
         new CompletionProvider(),
         '/' // triger character
     );
-
-    console.log("EXTENSION ACTIVATED");
     
     context.subscriptions.push(markdownCompletion);
 }

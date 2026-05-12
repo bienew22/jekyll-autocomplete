@@ -48,7 +48,5 @@ function getCommands(): AutoCompleteCommands[] {
         insert: cmd.insert
     }));
 
-    console.log(obj);
-
     return [...PREDEFINED_COMMANDS, ...userCommands];
 }
