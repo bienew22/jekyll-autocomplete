@@ -6,7 +6,17 @@ import * as vscode from 'vscode';
  * @param position 현재 커서 위치`
  * @returns boolean
  */
-export function isCursorInTags(document: vscode.TextDocument, position: vscode.Position) {
+
+type TagExpression =  {
+    exp: RegExp
+}
+
+export const TAG_EXP = {
+    "TAGS": { exp: /tags:\s*\[([\s\S]*?)\]/ },
+    "SLUG": { exp: /slug:\s*\"([\s\S]*?)\"/ }
+};
+
+export function isCursorInTags(document: vscode.TextDocument, position: vscode.Position, tag: TagExpression) {
     
     const range = getFrontMatterRange(document);
 
@@ -17,7 +27,7 @@ export function isCursorInTags(document: vscode.TextDocument, position: vscode.P
     const text = document.getText(range);
 
     // tags: [ ... ] 전체 찾기
-    const match = text.match(/tags:\s*\[([\s\S]*?)\]/);
+    const match = text.match(tag.exp);
     if (!match) {
         return false;
     }

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import { isCursorInTags } from './tags.utils';
 import { tagCache } from './tags.cache';
 import { fileValidataion } from '../utils/file';
+import { isCursorInTags, TAG_EXP } from '../utils/frontmatter';
 
 
 export class TagsProvider implements vscode.CompletionItemProvider {
@@ -13,7 +13,7 @@ export class TagsProvider implements vscode.CompletionItemProvider {
             return [];
         }
 
-        if (!isCursorInTags(document, position)) {
+        if (!isCursorInTags(document, position, TAG_EXP.TAGS)) {
             return [];
         }
         
