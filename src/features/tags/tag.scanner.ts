@@ -12,11 +12,8 @@ export async function buildTagCache(context: vscode.ExtensionContext) {
 
     if (saved) {
         tagCache.deserialize(saved);
-        console.log("use cache");
         return;
     } 
-
-    console.log("full scan");
 
     // 최초 1회 전체 스캔하여 tag 정보 획득.
     const files = await vscode.workspace.findFiles("_posts/**/*.md");
