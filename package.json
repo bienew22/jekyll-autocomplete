@@ -38,18 +38,6 @@
       "properties": {
         "jekll.autocomplete.commands": {
           "type": "object",
-          "default": {
-            "custom-h1": {
-              "sort": "001",
-              "desc": "제목1",
-              "insert": "# "
-            },
-            "custom-code": {
-              "sort": "010",
-              "desc": "코드 블럭",
-              "insert": "```$1\n$2\n```"
-            }
-          },
           "description": "사용자 정의 자동완성 명령어",
           "additionalProperties": {
             "type": "object",
@@ -71,6 +59,11 @@
               "insert"
             ]
           }
+        },
+
+        "jekll.autocomplete.gemini.api": {
+          "type": "string",
+          "description": "사용자의 gemini api key"
         }
       }
     }
@@ -104,6 +97,7 @@
     "typescript-eslint": "^8.56.1"
   },
   "dependencies": {
+    "@google/genai": "^2.2.0",
     "gray-matter": "^4.0.3"
   }
 }
