@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { AutoCompleteCommands, PREDEFINED_COMMANDS } from './completion.dsl';
 import { fileValidataion } from '../utils/file';
+import { getFrontMatterRange } from '../utils/frontmatter';
 
 
 export class CompletionProvider implements vscode.CompletionItemProvider {
@@ -9,6 +10,12 @@ export class CompletionProvider implements vscode.CompletionItemProvider {
         token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
         
         if (!fileValidataion(document.fileName)) {
+            return [];
+        }
+
+        const frontmatterRange = getFrontMatterRange(document);
+
+        if (frontmatterRange?.contains(position)) {
             return [];
         }
 
