@@ -3,10 +3,8 @@ import { frontmatterRegister } from './features/frontmatter/frontmatter.register
 import { completionRegister } from './features/completion/completion.register';
 import { commandRegister } from './features/commands/commands.register';
 import { tagsRegister } from './features/tags/tags.register';
-import { genSlug } from './features/slug/slug.generator';
 import { slugRegister } from './features/slug/slug.register';
 import { autoSetting } from './features/auto-setting/auto.setting';
-
 
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -30,8 +28,6 @@ export async function activate(context: vscode.ExtensionContext) {
 	slugRegister(context);
 
 	console.log("EXTENSION ACTIVATED");
-
-	await genSlug('바이브코딩-직무-면접-회고하기');
 }
 
 export function deactivate() {}

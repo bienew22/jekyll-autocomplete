@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { getGemini } from "../gemini/gemini";
 
-export async function genSlug(title: string): Promise<string> {
+export async function generateSlug(title: string): Promise<string> {
 
     const config = vscode.workspace.getConfiguration("jekll.autocomplete");
     const key = config.get<string>("gemini.api");
@@ -15,24 +15,49 @@ export async function genSlug(title: string): Promise<string> {
     try {
         const response = await ai.models.generateContent({
             model: "gemini-3-flash-preview",
-            contents: `Given a title, generate a clean English slug for a URL.
+            contents: `You are generating URL slugs for a technical blog.
 
-Requirements:
-- Use lowercase letters
-- Replace spaces with hyphens
-- Remove special characters
-- Keep it concise and meaningful
+Given a title, generate a clean, SEO-friendly English slug.
 
-Example1:
+Process:
+1. Remove unnecessary prefixes/suffixes (e.g., [], (), site names, tags)
+2. Extract only the core technical keywords
+3. Translate to natural English if the input is not English
+4. Keep only meaningful words (remove stop words like "the", "a", "of")
+5. Normalize into slug format
+
+Formatting Rules:
+- lowercase letters only
+- words separated by hyphens
+- no special characters
+- 2 to 6 words preferred
+
+Content Rules:
+- prioritize technical and domain-specific terms
+- avoid vague or generic words
+- avoid redundancy
+- keep it concise but descriptive
+
+Prefer patterns like:
+- {tech}-{concept}
+- {platform}-{feature}
+- {topic}-{guide}
+
+If meaningful keywords cannot be extracted, fallback to a simple descriptive slug.
+
+Examples:
+
 Input: "[프로그래머스] 야근 지수"
 Output: programmers-overtime-index
 
-Example2:
-Input: "Jeykll 게시글 작성법"
-Output: jekyll-post-writing-guide
+Input: "Jekyll 게시글 작성법"
+Output: jekyll-post-guide
+
+Input: "[Spring] OAuth JWT 인증 구현 방법"
+Output: spring-oauth-jwt-authentication
 
 Return only the slug.
-Do not include "Output:", quotes, or any additional text.
+No explanations, no quotes, no extra text.
 
 Title: ${title}`});
 
