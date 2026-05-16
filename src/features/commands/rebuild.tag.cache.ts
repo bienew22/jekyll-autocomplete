@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { tagCache } from '../tags/tags.cache';
 import { buildTagCache } from '../tags/tag.scanner';
 
-export async function rebuildTagCache(context: vscode.ExtensionContext) {
+export async function rebuildTagCacheCommand(context: vscode.ExtensionContext) {
     try {
         vscode.window.showInformationMessage("Rebuilding tag cache ...");
 
