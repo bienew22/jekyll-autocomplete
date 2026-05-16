@@ -41,7 +41,7 @@ export function isCursorInTags(document: vscode.TextDocument, position: vscode.P
 }
 
 
-function getFrontMatterRange(document: vscode.TextDocument) {
+export function getFrontMatterRange(document: vscode.TextDocument) {
     const text = document.getText();
 
     const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
