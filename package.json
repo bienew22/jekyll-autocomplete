@@ -60,7 +60,6 @@
             ]
           }
         },
-
         "jekll.autocomplete.gemini.api": {
           "type": "string",
           "description": "사용자의 gemini api key"
@@ -98,6 +97,7 @@
   },
   "dependencies": {
     "@google/genai": "^2.2.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "gray-matter": "^4.0.3"
   }
 }
