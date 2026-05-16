@@ -4,6 +4,17 @@ All notable changes to the "jekll-autocomplete" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.1.0] - 2026-05-16
+
+### Added
+
+- gemini api를 통하여 자동으로 slug 생성 기능
+- 최초 실행 시 기본적인 환경변수를 workspace 설정하는 로직 추가
+    - 나중에 사용자 정의할 때 직접 키 정보를 찾아 보지 않도록 하기 위함
+
+### Changed
+
+- markdown 자동완성 기능이 frontmatter에서는 동작하지 않도록 수정
 
 ## [1.0.0] - 2026-05-12
 
