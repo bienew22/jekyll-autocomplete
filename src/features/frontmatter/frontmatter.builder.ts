@@ -23,7 +23,7 @@ export function frontmatterBuilder({ fileName, yamlData }: FrontmatterOptions): 
 	return new FrontmatterDSL()
 		.start()
 		.title(title)	// 무조건 새로운 생성
-		.slug('')		// 무조건 새로 생성
+		.slug(yamlData?.slug || "")		
 		.description(yamlData?.description || "")
 		.author(yamlData?.author || "bienew22")
 		.date(createdAt)	// 재활용 또는 생성.
