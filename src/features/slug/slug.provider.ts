@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import matter from "gray-matter";
 import { fileValidataion } from '../utils/file';
-import { isCursorInField, FEILD_EXP } from '../utils/frontmatter';
+import { isCursorInField, FIELD_EXP } from '../utils/frontmatter';
 
 
 export class SlugProvider implements vscode.CompletionItemProvider {
@@ -12,7 +12,7 @@ export class SlugProvider implements vscode.CompletionItemProvider {
             return [];
         }
 
-        if (!isCursorInField(document, position, FEILD_EXP.SLUG)) {
+        if (!isCursorInField(document, position, FIELD_EXP.SLUG)) {
             return [];
         }
         
