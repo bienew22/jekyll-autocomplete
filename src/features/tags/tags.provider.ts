@@ -18,12 +18,14 @@ export class TagsProvider implements vscode.CompletionItemProvider {
         }
         
         return tagCache.getAll().map((tag) => {
-            const item = new vscode.CompletionItem(tag[0]);
+            const item = new vscode.CompletionItem(tag[0], vscode.CompletionItemKind.Snippet);
 
-            item.filterText = `t${tag[0]}`;
-            item.insertText = `${tag[0]}, `;
+            item.filterText = `/${tag[0]}`;
+            item.insertText = new vscode.SnippetString(tag[0] + ', ');
             item.sortText = String(99999 - (Number(tag[1]) || 0)).padStart(5, '0') + tag[0];
             item.detail = tag[1];
+
+            item.range = new vscode.Range(position.translate(0, -1), position);
 
             return item;
         });

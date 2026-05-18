@@ -7,13 +7,14 @@ import * as vscode from 'vscode';
  * @returns boolean
  */
 
-type FeildExpression =  {
+type FieldExpression =  {
+    name: string,
     exp: RegExp
 }
 
-export const FEILD_EXP = {
-    "TAGS": { exp: /tags:\s*\[([\s\S]*?)\]/ },
-    "SLUG": { exp: /slug:\s*\"([\s\S]*?)\"/ }
+export const FIELD_EXP = {
+    "TAGS": { name: "tags", exp: /tags:\s*\[([\s\S]*?)\]/ },
+    "SLUG": { name: "slug", exp: /slug:\s*\"([\s\S]*?)\"/ }
 };
 
 /**
@@ -23,22 +24,24 @@ export const FEILD_EXP = {
  * @param field 검사하고자 하는 필드
  * @returns boolean
  */
-export function isCursorInField(document: vscode.TextDocument, position: vscode.Position, feild: FeildExpression) {
+export function isCursorInField(document: vscode.TextDocument, position: vscode.Position, field: FieldExpression) {
     
+    // 현재 파일에 frontmatter가 없거나 범위 밖인 경우
     const range = getFrontMatterRange(document);
 
     if (!range || !range.contains(position)) {
         return false;
     }
 
-    const text = document.getText(range);
+    const frontmatter = document.getText(range);
 
-    // tags: [ ... ] 전체 찾기
-    const match = text.match(feild.exp);
+    // frontmatter에 해당 필드가 없는 경우
+    const match = frontmatter.match(field.exp);
     if (!match) {
         return false;
     }
 
+    // 현재 정규식 안에 존재 여부 확인
     const startOffset = document.offsetAt(range.start) + match.index!;
     const endOffset = startOffset + match[0].length;
 

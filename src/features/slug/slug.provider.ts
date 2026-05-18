@@ -17,7 +17,7 @@ export class SlugProvider implements vscode.CompletionItemProvider {
         }
         
         const item = new vscode.CompletionItem(
-            "create slug",
+            "/create slug",
             vscode.CompletionItemKind.Snippet
         );
 

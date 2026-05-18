@@ -8,7 +8,7 @@ export function slugRegister(context: vscode.ExtensionContext) {
     const tagsCompletion = vscode.languages.registerCompletionItemProvider(
         { language: 'markdown' },
         new SlugProvider(),
-        's' // triger character
+        '/' // triger character
     );
     
     context.subscriptions.push(tagsCompletion);

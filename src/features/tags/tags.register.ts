@@ -20,7 +20,7 @@ export async function tagsRegister(context: vscode.ExtensionContext) {
     const tagsCompletion = vscode.languages.registerCompletionItemProvider(
         { language: 'markdown' },
         new TagsProvider(),
-        't' // triger character
+        '/' // triger character
     );
     
     context.subscriptions.push(tagsCompletion);
