@@ -7,16 +7,23 @@ import * as vscode from 'vscode';
  * @returns boolean
  */
 
-type TagExpression =  {
+type FeildExpression =  {
     exp: RegExp
 }
 
-export const TAG_EXP = {
+export const FEILD_EXP = {
     "TAGS": { exp: /tags:\s*\[([\s\S]*?)\]/ },
     "SLUG": { exp: /slug:\s*\"([\s\S]*?)\"/ }
 };
 
-export function isCursorInTags(document: vscode.TextDocument, position: vscode.Position, tag: TagExpression) {
+/**
+ * 커서의 위치가 현재 특정 필드에 존재여부를 확인
+ * @param document 현재 문서
+ * @param position 현재 커서 위치
+ * @param field 검사하고자 하는 필드
+ * @returns boolean
+ */
+export function isCursorInField(document: vscode.TextDocument, position: vscode.Position, feild: FeildExpression) {
     
     const range = getFrontMatterRange(document);
 
@@ -27,7 +34,7 @@ export function isCursorInTags(document: vscode.TextDocument, position: vscode.P
     const text = document.getText(range);
 
     // tags: [ ... ] 전체 찾기
-    const match = text.match(tag.exp);
+    const match = text.match(feild.exp);
     if (!match) {
         return false;
     }
@@ -39,7 +46,6 @@ export function isCursorInTags(document: vscode.TextDocument, position: vscode.P
 
     return cursorOffset >= startOffset && cursorOffset <= endOffset;
 }
-
 
 export function getFrontMatterRange(document: vscode.TextDocument) {
     const text = document.getText();
