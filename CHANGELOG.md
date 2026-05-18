@@ -4,6 +4,12 @@ All notable changes to the "jekll-autocomplete" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.1.1] - 2026-05-18
+
+### Changed
+
+- `slug` -> `s`, `tags` -> `t`, `markdown` -> `/` 서로 다른게 설정 명령어를 모두 `/`로 통일 시킴
+
 ## [1.1.0] - 2026-05-16
 
 ### Added
