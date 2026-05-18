@@ -17,13 +17,13 @@ export class SlugProvider implements vscode.CompletionItemProvider {
         }
         
         const item = new vscode.CompletionItem(
-            "/create slug",
+            "create slug with gemini",
             vscode.CompletionItemKind.Snippet
         );
 
         item.detail = "gemini api로 slug 생성";
-        item.insertText = "";
-        item.filterText = "s";
+        item.insertText = "Creating...";
+        item.filterText = "/create slug with gemini";
 
         item.command = {
             command: "jekyll.autocomplete.generateSlug",
